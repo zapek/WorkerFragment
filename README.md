@@ -12,14 +12,14 @@ Simply copy WorkerFragment.java into your project, then on your Activity's onCre
 
     this.workerFragment = WorkerFragment.getWorkerFragment(this.getSupportFragmentManager());
 
-If savedInstanceState == null, to start your service, do this:
+If savedInstanceState == null, this is how your start your IntentService:
 
     Intent exampleIntent = new Intent(this, ExampleService.class);
     exampleIntent.setAction(ExampleService.ACTION_GET_HELLO);
-    *this.workerFragment.putReceiver(exampleIntent);*
+    this.workerFragment.putReceiver(exampleIntent); /* this sets the WorkerFragment as receiver */
     this.startService(exampleIntent);
 
-Then you implement the WorkerFragment.WorkerFragmentReceiver interface:
+Then you implement the WorkerFragment.WorkerFragmentReceiver interface in your Activity:
 
     @Override
     public void onReceiveResult(int resultCode, Bundle resultData) {
